@@ -20,29 +20,24 @@ We’re optimizing our AWS storage costs by using a smart Lambda function, trigg
 6. Next, click on 'Snapshots,' and then click the 'Create Snapshot' button. It will prompt you with a page that looks like this.
    
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/3.png)
-   
-      ### Step 2 :
-   1.Navigate to the IAM Console.
-   
-   2.Navigate policies section to create a new policy.
-   
-   3.Select the service as 'EC2'
-   
-   4. In the 'Actions' section, grant permissions for the following actions:
+
+### Step 2 :
+1.Navigate to the IAM Console.
+2.Navigate policies section to create a new policy.
+3.Select the service as 'EC2
+4. In the 'Actions' section, grant permissions for the following actions:
     DescribeInstances, DescribeVolumes, DescribeSnapshots, DeleteSnapshots.
-      
-   6. create IAM role from that policy
+5. create IAM role from that policy
 
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/5.png)
-
-   ### Step 3:
+### Step 3:
 1. After creating a Snapshot, navigate to the Lambda Console.
 
 2. You will see some options in the user interface, such as 'Create Function'.
 
 3. Click on 'Functions'.
 
-      ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/4.png)
+   ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/4.png)
    
 4. Select 'Author from Scratch,' then enter the Function name, and choose the latest Python version.
 
@@ -50,15 +45,15 @@ We’re optimizing our AWS storage costs by using a smart Lambda function, trigg
 
 6.After creating the function, scroll down, and you will see something like the image below.
 
-      ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/aa87899f34f39bf610778d48368212e4a5a69f21/Images/13.png)
+   ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/aa87899f34f39bf610778d48368212e4a5a69f21/Images/13.png)
    
  7. Click on the 'Code' section.
 
 8. Next, clear the existing code and replace it with the 'identify_stale_snapshots.py' code.
 
 9. Click 'Deploy' to save your changes, and then click 'Test.'
-
-    ## Step 4 :
+    
+### Step 4 :
 
 1. You can terminate the EC2 instance to test our Lambda function.
 
