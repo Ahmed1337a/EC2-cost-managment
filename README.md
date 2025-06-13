@@ -28,9 +28,10 @@ We’re optimizing our AWS storage costs by using a smart Lambda function, trigg
    
    3.Select the service as 'EC2'
    
-   4. In the 'Actions' section, grant permissions for the following actions: DescribeInstances, DescribeVolumes, DescribeSnapshots, DeleteSnapshots.
+   4. In the 'Actions' section, grant permissions for the following actions:
+    DescribeInstances, DescribeVolumes, DescribeSnapshots, DeleteSnapshots.
       
-   5. create IAM role from that policy
+   6. create IAM role from that policy
 
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/5.png)
 
@@ -43,34 +44,47 @@ We’re optimizing our AWS storage costs by using a smart Lambda function, trigg
 
       ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/4.png)
    
-   4. Select 'Author from Scratch,' then enter the Function name, and choose the latest Python version.
-6. Scroll down and click 'Create Function'.
+4. Select 'Author from Scratch,' then enter the Function name, and choose the latest Python version.
+
+5. Scroll down and click 'Create Function'.
+
 6.After creating the function, scroll down, and you will see something like the image below.
 
       ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/aa87899f34f39bf610778d48368212e4a5a69f21/Images/13.png)
    
  7. Click on the 'Code' section.
+
 8. Next, clear the existing code and replace it with the 'identify_stale_snapshots.py' code.
+
 9. Click 'Deploy' to save your changes, and then click 'Test.'
 
     ## Step 4 :
+
 1. You can terminate the EC2 instance to test our Lambda function.
+
 2. Navigate to the EC2 console and then terminate the EC2 instance.
+
 3. Return to the Lambda console to test the code; go to the Lambda Function page.
+
 4. Under the Code section, click 'Test code', it will display an output like this.
+
 5. As expected, our Lambda function deleted the snapshot because it was associated with a volume that couldn't be found.
    
 ## Additional notes:
 We can use CloudWatch to automatically trigger the Lambda function every hour, day, minute, or second. However, this may result in higher costs because our Lambda execution time increases when triggered automatically. Nevertheless, manually triggering this function is a better choice because it allows us to trigger it when needed.
 
 ### Steps :
+
 1. Navigate to CloudWatch Console.
+
 2.Navigate to Rules
+
 3.Create Role
 
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/6.png)
 
 4.click Continue in event bridge scheduler
+
 5.Next, on the following page, configure the schedule pattern as follows:
 
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/7.png)
@@ -80,6 +94,7 @@ We can use CloudWatch to automatically trigger the Lambda function every hour, d
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/8.png)
 
 7.Scroll Down and then Click Next.
+
 8. On the next page, choose 'None' for the 'Action after Schedule'
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/9.png)
 
@@ -88,6 +103,7 @@ We can use CloudWatch to automatically trigger the Lambda function every hour, d
    ![image](https://github.com/Ahmed1337a/EC2-cost-managment/blob/b5dfcd169566815f8cc1186c76fdfec71199a88d/Images/11.png)
 
 9.You have successfully created the scheduler, which will trigger the Lambda function every hour.
+
 10. However, please note that this setup will incur some costs since the function is triggered continuously every hour. Alternatively, we can configure it to run on specific days and times as needed.
 
 
